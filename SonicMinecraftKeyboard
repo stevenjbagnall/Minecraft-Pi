@@ -1,0 +1,43 @@
+mc_set_block :ice, 71,4,-25
+mc_set_block :ice, 72,4,-25
+mc_set_block :bedrock, 71,4,-32
+mc_set_block :bedrock, 72,4,-32
+
+live_loop :minecraft do
+  sleep 0.5
+  sample :drum_bass_hard, amp: 1
+  x,y,z = mc_get_pos
+  mc_teleport x, y+0.5, z
+end
+
+live_loop :piano do
+  x,y,z = mc_get_pos
+  block = mc_get_block x,y-1,z
+  case block
+  when :grass
+    sample :ambi_choir, amp: 3
+  when :ice
+    sample :ambi_dark_woosh, amp: 3
+  when :dirt
+    sample :ambi_drone, amp: 3
+  when :glass
+    sample :ambi_glass_hum, amp: 3
+  when :diamond
+    sample :ambi_haunted_hum, amp: 3
+  when :sand
+    sample :ambi_lunar_land, amp: 3
+  when :wood
+    sample :ambi_swoosh, amp: 3
+  when :clay
+    sample :elec_pop, amp: 3
+  when :bedrock
+    sample :ambi_glass_rub, amp: 3
+  when :gold
+    sample :ambi_soft_buzz, amp: 3
+  when :cobblestone
+    sample :guit_e_slide, amp: 3
+  else
+    puts "don't care"
+  end
+sleep 1
+end
